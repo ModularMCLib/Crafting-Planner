@@ -1,0 +1,33 @@
+import org.gradle.jvm.tasks.Jar
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}
+
+test {
+    failOnNoDiscoveredTests = false
+}
+
+java {
+    withSourcesJar()
+}
+
+sourcesJar {
+    exclude {
+        sourceSets.main.allSource.contains(it.file)
+    }
+    from(delombok)
+}
+
+base {
+    archivesName = "${project.name}"
+}
+
+afterEvaluate {
+    tasks.withType(Jar).configureEach {
+        destinationDirectory = file('build/libs/')
+    }
+}

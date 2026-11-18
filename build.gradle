@@ -1,0 +1,9 @@
+plugins {
+    id 'base'
+}
+
+allprojects {
+    group = maven_group
+    boolean isSnapshot = System.getenv("SNAPSHOT")
+    version = "${project_version}" + (isSnapshot ? "-SNAPSHOT" : "")
+}
