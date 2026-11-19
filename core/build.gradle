@@ -45,5 +45,5 @@ lombok {
 }
 
 kotlinLombok {
-    lombokConfigurationFile(file('lombok.config'))
+    lombokConfigurationFile(file("$rootDir/lombok.config"))
 }
