@@ -2,10 +2,14 @@
 spotless = "8.11.0"
 lombok-plugin = "9.8.3"
 jspecify = "1.0.1"
+kotlin = "2.4.21"
 
 [libraries]
 jspecify = { module = "org.jspecify:jspecify", version.ref = "jspecify" }
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 lombok = { id = "io.freefair.lombok", version.ref = "lombok-plugin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-lombok = { id = "org.jetbrains.kotlin.plugin.lombok", version.ref = "kotlin" }

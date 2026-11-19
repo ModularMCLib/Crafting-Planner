@@ -22,6 +22,28 @@ spotless {
         endWithNewline()
         eclipse('4.31').configFile(formatFile)
     }
+    kotlin {
+        target 'src/main/kotlin/**/*.kt', 'src/test/kotlin/**/*.kt'
+
+        def orderFile = file("$rootDir/gradle/spotless/spotless.ktlint")
+        ktlint()
+            .setEditorConfigPath(orderFile)
+            .editorConfigOverride([
+                'max_line_length': '300',
+                'ktlint_standard_no-unused-imports': 'enabled',
+                'ktlint_standard_package-name': 'disabled',
+            ])
+
+        toggleOffOn()
+        replaceRegex(
+            'empty Kotlin function bodies',
+            /(?m)(fun[^\n{=]*\([^)]*\)(?:\s*:\s*[^\n{=]+)?\s*)\{\r?\n[ \t]*\}/,
+            '$1{}'
+        )
+        trimTrailingWhitespace()
+        leadingSpacesToTabs()
+        endWithNewline()
+    }
     json {
         target('**/src/*/resources/**/*.json', '**/src/*/resources/**/*.mcmeta')
         targetExclude '**/src/generated/resources/**'

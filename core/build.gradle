@@ -5,10 +5,16 @@ plugins {
     id 'maven-publish'
     alias libs.plugins.spotless
     alias libs.plugins.lombok
+    alias libs.plugins.kotlin.jvm
+    alias libs.plugins.kotlin.lombok
 }
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(21)
+}
+
+kotlin {
+    jvmToolchain(21)
 }
 
 apply from: "$rootDir/gradle/scripts/jars.gradle"
@@ -24,6 +30,20 @@ tasks.withType(JavaCompile).configureEach {
     options.compilerArgs << "-Xlint:-removal"
 }
 
+tasks.named('compileJava', JavaCompile) {
+    dependsOn tasks.named('compileKotlin')
+    classpath += files(layout.buildDirectory.dir('classes/kotlin/main'))
+}
+
+tasks.named('delombok') {
+    dependsOn tasks.named('compileJava')
+    classpath.from(layout.buildDirectory.dir('classes/kotlin/main'))
+}
+
 lombok {
     version = "1.18.46"
+}
+
+kotlinLombok {
+    lombokConfigurationFile(file('lombok.config'))
 }

@@ -1,6 +1,6 @@
 # Crafting Planner
 
-Crafting Planner 是独立的 Java 规划库，用于承载共享领域类型、请求与结果契约、验证逻辑和后端 SPI。
+Crafting Planner 是 Kotlin 优先的 JVM 规划库，可与 Java 源码混编，用于承载共享领域类型、请求与结果契约、验证逻辑和后端 SPI。
 
 首期 Gradle 模块为 `core`。后续将 JVM 规划实现提取到 Core 契约之后，再添加 `backend-jvm` 模块。
 

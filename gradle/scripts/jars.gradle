@@ -17,9 +17,11 @@ java {
 
 sourcesJar {
     exclude {
-        sourceSets.main.allSource.contains(it.file)
+        sourceSets.main.allSource.contains(it.file) && !it.file.name.endsWith('.kt')
     }
-    from(delombok)
+    from(delombok) {
+        include '**/*.java'
+    }
 }
 
 base {
