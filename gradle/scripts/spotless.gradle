@@ -23,7 +23,7 @@ spotless {
         eclipse('4.31').configFile(formatFile)
     }
     kotlin {
-        target 'src/main/kotlin/**/*.kt', 'src/test/kotlin/**/*.kt'
+        target '**/src/main/java/**/*.kt', '**/src/test/java/**/*.kt'
 
         def orderFile = file("$rootDir/gradle/spotless/spotless.ktlint")
         ktlint()

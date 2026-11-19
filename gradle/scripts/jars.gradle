@@ -1,5 +1,3 @@
-import org.gradle.jvm.tasks.Jar
-
 idea {
     module {
         downloadSources = true
